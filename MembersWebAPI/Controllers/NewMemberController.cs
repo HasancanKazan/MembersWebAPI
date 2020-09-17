@@ -14,7 +14,7 @@ namespace MembersWebAPI.Controllers
     {
         public List<Member> Get()
         {
-            return MemberRepository.Get();
+            return MemberRepository.Get(); 
         }
 
         public Member Get(int id)
