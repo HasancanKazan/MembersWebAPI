@@ -12,14 +12,24 @@ namespace MembersWebAPI.Controllers
 {
     public class NewMemberController : ApiController
     {
-        public List<Member> Get()
+        //public List<Member> GetMember()
+        //{
+        //    return MemberRepository.Get(); 
+        //}
+        [HttpGet]
+        public List<Member> List()
         {
-            return MemberRepository.Get(); 
+            return MemberRepository.Get();
         }
-
+        
         public Member Get(int id)
         {
             return MemberRepository.Get(id);
+        }
+
+        public List<Member> GetByAge(int age)
+        {
+            return MemberRepository.Get().Where(x => x.Age == age).ToList();
         }
 
         public Member Put([FromBody] Member member)
@@ -33,7 +43,17 @@ namespace MembersWebAPI.Controllers
             return member;
         }
 
-        public Member Post([FromBody] Member member)
+        //public Member Post([FromBody] Member member)
+        //{
+        //    if (MemberRepository.IsExist(member.FullName))
+        //    {
+        //        throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Another member with the same fullname is already exist."));
+        //    }
+
+        //    return MemberRepository.Add(member.FullName, member.Age);
+        //}
+        [HttpPost]
+        public Member CreateNewMember([FromBody] Member member)
         {
             if (MemberRepository.IsExist(member.FullName))
             {
