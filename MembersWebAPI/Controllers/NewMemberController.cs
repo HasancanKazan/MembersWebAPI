@@ -24,7 +24,7 @@ namespace MembersWebAPI.Controllers
         }
 
         [Route("api/newmember/getbyage/{age}")]
-        public List<Member> GetByAge(int age)
+        public List<Member> GetByAge(int age) 
         {
             return MemberRepository.Get().Where(x => x.Age == age).ToList();
         }
