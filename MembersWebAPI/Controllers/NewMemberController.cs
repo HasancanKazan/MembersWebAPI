@@ -12,25 +12,35 @@ namespace MembersWebAPI.Controllers
 {
     public class NewMemberController : ApiController
     {
-        //public List<Member> GetMember()
-        //{
-        //    return MemberRepository.Get(); 
-        //}
-        [HttpGet]
-        public List<Member> List()
+
+        public List<Member> Get()
         {
             return MemberRepository.Get();
         }
-        
+
         public Member Get(int id)
         {
             return MemberRepository.Get(id);
         }
 
+        [Route("api/newmember/getbyage/{age}")]
         public List<Member> GetByAge(int age)
         {
             return MemberRepository.Get().Where(x => x.Age == age).ToList();
         }
+
+        [Route("api/newmember/getgreaterthan/{age}")]
+        public List<Member> GetGreaterThan(int age)
+        {
+            return MemberRepository.Get().Where(x => x.Age > age).ToList();
+        }
+
+        //[HttpGet]
+        //public List<Member> List()
+        //{
+        //    return MemberRepository.Get();
+        //}
+        
 
         public Member Put([FromBody] Member member)
         {
